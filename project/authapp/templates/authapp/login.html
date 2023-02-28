@@ -1,0 +1,18 @@
+{% extends 'mainapp/base.html' %}
+
+{% block title %}Вход{% endblock title%}
+
+{% block content %}
+<div class="container fw-bold text-start main d-flex justify-content-center">
+    <div class="login border border-dark bg rounded-2 py-3 px-2 w-25 wrap">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="d-flex align-items-baseline">
+                <button class="btn btn-primary me-1">Войти</button>
+                <a href="{% url 'pass_reset' %}" class="d-inline-block">Забыли пароль?</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

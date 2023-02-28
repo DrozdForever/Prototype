@@ -1,0 +1,18 @@
+{% extends 'mainapp/base.html' %}
+
+{% block title %} Регистрация{% endblock title%}
+
+{% block content %}
+<div class="container fw-bold text-start main d-flex justify-content-center ">
+    <div class="border border-dark bg rounded-2 py-3 px-5 w-50 registration">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="d-flex align-items-baseline">
+                <button class="btn btn-warning me-3">Регистрация</button>
+                <p>Уже есть учетная запись? <a href="{% url  'auth' %}">Войти</a></p>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,79 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %} {% endblock title %}</title>
+    <link rel="stylesheet" href="{%static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{%static 'css/bootstrap.min.css' %}" />
+</head>
+
+<body>
+    <header class="p-3 text-bg-dark">
+        <!-- <div class="container"> -->
+        <div
+            class="d-flex flex-wrap align-items-baseline justify-content-center justify-content-lg-start ps-md-3 nav-end">
+            <a href="/" class="mb-2 mb-lg-0 text-blue fs-4 text-decoration-none">
+                <div class="fw-bold">LoGooo</div>
+            </a>
+
+            <ul class="nav mb-2 mb-md-0 fs-5 ms-3">
+                <li>
+                    <a href="{% url 'services' %}" class="nav-link px-2 text-white">Услуги</a>
+                </li>
+                <li><a href="{% url 'news' %}" class="nav-link px-2 text-white">Новости</a></li>
+                <li>
+                    <a href="{% url 'contacts' %}" class="nav-link px-2 text-white">Контакты</a>
+                </li>
+                <li><a href="#" class="nav-link px-2 text-white">Про нас</a></li>
+            </ul>
+
+            {% if not user.is_authenticated %}
+            <a href="{% url  'auth' %}" class="btn btn-primary ms-auto">Войти</a>
+            <a href="{% url  'registration' %}" class="btn btn-warning ms-1">Регистрация</a>
+
+            {% elif user.is_staff %}
+            <a href="{% url  'news-add' %}" class="btn btn-outline-light ms-auto">Создать пост</a>
+            <a href="{% url  'profile' %}" class="btn btn-success ms-1">Профиль</a>
+            <a href="{% url  'exit' %}" class="btn btn-warning ms-1">Выйти</a>
+            <a href="{% url  'admin:index' %}" class="btn btn-danger ms-1">Админка</a>
+
+            {% else %}
+            <a href="{% url  'news-add' %}" class="btn btn-outline-light ms-auto">Создать пост</a>
+            <a href="{% url  'profile' %}" class="btn btn-primary ms-1">Профиль</a>
+            <a href="{% url  'exit' %}" class="btn btn-warning ms-1">Выйти</a>
+            {% endif %}
+
+        </div>
+        <!-- </div> -->
+    </header>
+
+    {% if messages %}
+    {% for mess in messages %}
+    <div class="alert alert-success">{{ mess }}</div>
+    {% endfor %}
+    {% endif %}
+
+    {% block content %}{% endblock content %}
+
+    <!-- Блок для страницы новостей -->
+    <div class="container">
+        <div class="row">
+            <div class="col-8">{% block news %}{% endblock news %}</div>
+            <div class="col-3 ms-auto">{% block aside %}{% endblock aside %}</div>
+        </div>
+    </div>
+    <!-- Конец блока для страницы новостей -->
+
+    {% block footer %}
+    <footer class="py-2 text-bg-dark position-absolute bottom-0 w-100">
+        <p class="text-start">© 2022 Все права защищены</p>
+    </footer>
+    {% endblock footer %}
+</body>
+
+</html>

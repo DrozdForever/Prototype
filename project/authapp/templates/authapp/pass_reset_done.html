@@ -1,0 +1,15 @@
+{% extends 'mainapp/base.html' %}
+
+{% block title %}Восстановление пароля{% endblock title%}
+
+{% block content %}
+<div class="container fw-bold text-start main d-flex justify-content-center">
+    Done
+</div>
+{% endblock content %}
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'dr0zd.forever@gmail.com'
+EMAIL_HOST_PASSWORD = ''

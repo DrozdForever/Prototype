@@ -1,0 +1,56 @@
+{% extends 'mainapp/base.html' %}
+
+{% block title %} {{title}} {% endblock title%}
+
+{% block news %}
+
+<div class="news-page bg my-3 rounded">
+    <h2>{{object.title }}</h2>
+    <hr>
+    <p class="text">{{ object.text | safe }}</p>
+    <hr>
+    <div class="d-flex">
+        <div>
+            <img src="{{ object.avtor.profile.img.url  }}" class="rounded-circle user_img">
+        </div>
+        <div class="mt-2 ms-2">
+            <span>
+                <b>Опубликовал:</b><a href="{% url 'user-news' object.avtor %}">{{ object.avtor }}</a>
+            </span>
+            <br>
+            <span class="text-muted">{{ object.date }}</span>
+        </div>
+
+        {% if user == object.avtor %}
+        <a href="{% url 'news-update' object.id %}" class="btn btn-outline-primary ms-auto btn-news">Редактировать</a>
+        <a href="{% url 'news' %}" class="btn btn-primary ms-1 btn-news">Назад</a>
+        {% else %}
+        <a href="{% url 'news' %}" class="btn btn-primary ms-auto btn-news">Назад</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock news %}
+
+{% block aside %}
+<div class="my-3 bg aside">
+    <h3>5 лайфхаков для разработчика</h3>
+    <img
+        src="https://avatars.mds.yandex.net/i?id=d58b2b99e577eaebc227abd94387ea0cce1c608a-6073906-images-thumbs&n=13&exp=1">
+    <p class="text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum quasi blanditiis distinctio
+        ipsa eos
+        laborum fuga nulla magnam libero maiores?</p>
+    <hr>
+    <h3>ТОП-3 ЯП</h3>
+    <img
+        src="https://avatars.mds.yandex.net/i?id=d58b2b99e577eaebc227abd94387ea0cce1c608a-6073906-images-thumbs&n=13&exp=1">
+    <p class="text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum quasi blanditiis distinctio
+        ipsa eos
+        laborum fuga nulla magnam libero maiores?</p>
+</div>
+{% endblock aside %}
+
+{%block footer%}
+<footer class="py-1 text-bg-dark">
+    <p class="text-start">© 2022 Все права защищены</p>
+</footer>
+{% endblock footer %}

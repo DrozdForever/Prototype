@@ -1,0 +1,13 @@
+{% extends 'mainapp/base.html' %}
+
+{% block title %} Главная{% endblock title %}
+
+{% block content %}
+<div class="container fw-bold text-center main">
+   <h1 class=" display-1"><b>Простой и удобный сервис</b></h1>
+   <h2 class="my-4 display-4"><b>Делаем работу быстро и качественно</b></h2>
+   <button class="btn btn-danger">
+      <a class="nav-link text-white fs-4" href="{% url 'services' %}">Посмотреть услуги</a>
+   </button>
+</div>
+{% endblock content %}

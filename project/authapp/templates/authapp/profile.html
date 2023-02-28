@@ -1,0 +1,25 @@
+{% extends 'mainapp/base.html' %}
+
+{% block title %}Профиль{% endblock title%}
+
+{% block content %}
+<div class="container fw-bold text-start main d-flex justify-content-center">
+    <div class="p-3 bg profile rounded shadow-sm">
+        <div class="d-flex text-muted pt-3 align-items-center">
+            <img class="bd-placeholder-img flex-shrink-0 me-2 rounded-circle" width="64" height="64"
+                src="{{ user.profile.img.url }}">
+            <p class="pb-3 mb-0 small lh-sm border-bottom">
+                <strong class="d-block text-gray-dark">{{ user.username }}</strong>
+                {{ user.email }}
+            </p>
+        </div>
+        <hr>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ updateUserForm.as_p }}
+            {{ profileImageForm.as_p }}
+            <button class="btn btn-primary">Обновить профиль</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}

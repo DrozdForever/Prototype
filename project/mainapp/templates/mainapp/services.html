@@ -1,0 +1,19 @@
+{% extends 'mainapp/base.html' %}
+
+{% block title %}Услуги{% endblock title %}
+
+{% block content %}
+<div class="container fw-bold text-center main">
+
+    <h2 class="display-1 mb-5"><b>Страница с услугами</b></h1>
+        <div class="d-flex mx-5 justify-content-between">
+            {% for item in text %}
+            <div class="px-3 mx-5 border border-dark rounded text-bg-dark">
+                <h3 class='mb-3'>{{ item.title }}</h3>
+                <hr>
+                <p>{{ item.text }}</p>
+            </div>
+            {% endfor %}
+        </div>
+</div>
+{% endblock content %}

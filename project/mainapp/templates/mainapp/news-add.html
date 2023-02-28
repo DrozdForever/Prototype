@@ -1,0 +1,24 @@
+{% extends 'mainapp/base.html' %}
+
+{% block title %}{{title}}{% endblock title%}
+
+{% block content %}
+<div class="container fw-bold text-start main d-flex justify-content-center">
+    <div class="p-3 bg profile rounded shadow-sm news-add">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class=" btn btn-primary btn-form">{{ btn_text }}</button>
+
+            {% if btn_text == 'Обновить статью' %}
+            <button class=" btn btn-danger btn-form">
+                <a href="{% url 'news-delete' object.id %}" class="text-decoration-none text-white">
+                    Удалить статью
+                </a>
+            </button>
+            {% endif %}
+
+        </form>
+    </div>
+</div>
+{% endblock content %}
